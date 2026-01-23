@@ -1,0 +1,42 @@
+.clickMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.targetBox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid red;
+  height: 80px;
+  width: 50px;
+}
+
+.charMenu {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6.7px;
+  margin: 0;
+}
+
+.charMenu .menu-item {
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+
+.charMenu .menu-item:hover,
+.charMenu .menu-item:focus {
+  text-decoration: underline;
+  background-color: rgba(0, 0, 0, 0.1);
+}

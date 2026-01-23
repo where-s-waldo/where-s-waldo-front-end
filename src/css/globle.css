@@ -6,7 +6,7 @@ body {
 
 #root {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,24 +22,59 @@ body {
 }
 
 .waldoMaps {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
   gap: 20px;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
+  justify-content: center;
 }
 
-.map {
+
+.mapItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
   background-color: rgb(135, 192, 205);
   color: rgb(17, 63, 103);
   border-radius: 10px;
   padding: 10px;
 }
 
-.map img {
+.mapItem img {
   border: 3px solid rgb(17, 63, 103);
   border-radius: 5px;
 }
 
 .mapOverlay {
-    cursor: url('/cursor.png') 32 32, auto;
+  width: 100%;
+}
+
+.mapOverlay.black {
+  cursor: url('/cursor-black.png') 32 32, auto;
+}
+
+.mapOverlay.yellow {
+  cursor: url('/cursor-yellow.png') 32 32, auto;
+}
+
+.mapOverlay.red {
+  cursor: url('/cursor-red.png') 32 32, auto;
+}
+
+.mapOverlay.blue {
+  cursor: url('/cursor-blue.png') 32 32, auto;
+} 
+
+.map {
+  width: 100%;
+}
+
+.map img {
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
 }

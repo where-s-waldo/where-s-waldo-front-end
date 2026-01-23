@@ -11,3 +11,9 @@ header {
 header * {
   margin: 0;
 }
+
+.topRight {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
