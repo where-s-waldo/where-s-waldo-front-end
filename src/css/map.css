@@ -5,6 +5,7 @@
   align-items: center;
   transform: translate(-50%, -50%);
   z-index: 1000;
+  cursor: pointer;
 }
 
 .targetBox {
@@ -29,14 +30,78 @@
   margin: 0;
 }
 
+
 .charMenu .menu-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.charMenu .menu-item img {
+  height: 40px;
+  width: auto;
 }
 
 .charMenu .menu-item:hover,
 .charMenu .menu-item:focus {
-  text-decoration: underline;
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  width: 100%;
+  position: relative;
+}
+
+.map img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.characterBox {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 40px;
+  border: 4px solid black;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  width: 90vw;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.characterBox>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  gap: 10px;
+}
+
+.findChar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85.67vw;
+}
+
+.options {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.timer {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(135, 192, 205);
+  padding: 10px;
+  border-radius: 15px;
+  font-size: x-large;
+  color: white;
 }

@@ -23,7 +23,7 @@ body {
 
 .waldoMaps {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-columns: repeat(auto-fill, 400px);
   gap: 20px;
   width: 80%;
   max-width: 1200px;
@@ -36,12 +36,13 @@ body {
 .mapItem {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   background-color: rgb(135, 192, 205);
   color: rgb(17, 63, 103);
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
 }
 
 .mapItem img {
@@ -67,14 +68,99 @@ body {
 
 .mapOverlay.blue {
   cursor: url('/cursor-blue.png') 32 32, auto;
-} 
+}
 
-.map {
+.goToMap {
+  background-color: rgb(17, 63, 103);
+  color: rgb(243, 249, 251);
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  border: none;
+}
+
+.goToMap:hover,
+.goToMap:focus {
+  background-color: rgb(0, 32, 61);
+}
+
+.goToMap:active {
+  transform: translateY(5%);
+  box-shadow: none;
+}
+
+.mapDescription {
+  width: 100%;
+  text-align: start;
+}
+
+.mapItem img {
   width: 100%;
 }
 
-.map img {
-  width: 100%;
-  border-radius: 5px;
-  margin-top: 10px;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes popin {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.popUpWrapper {
+  position: fixed;
+  top: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.popUpMessage {
+  padding: 20px;
+  border-radius: 10px;
+  color: gainsboro;
+  font-size: large;
+}
+
+.popUpMessage.open {
+  animation: popin 0.5s ease-out forwards;
+}
+
+.popUpMessage.close {
+  animation: fadeout 0.5s ease-out forwards;
+}
+
+.popUpMessage.start {
+  opacity: 0;
+}
+
+
+.popUpMessage.red {
+  background-color: red;
+}
+
+.popUpMessage.green {
+  background-color: green;
 }

@@ -1,8 +1,12 @@
-const Header = ({ topRight }) => {
+const Header = ({ link }) => {
   return (
     <header>
       <h1>Where's Waldo?</h1>
-      <div className="topRight">{topRight}</div>
+      <div className="topRight">
+        {link &&
+          <button className="goToMap">{link}</button>
+        }
+      </div>
     </header>
   )
 }
