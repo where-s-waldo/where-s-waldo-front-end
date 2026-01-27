@@ -38,9 +38,19 @@ const startMapTimer = async (mapId) => {
     .catch((error) => console.error(error))
 }
 
+const finishMapTimer = async (mapId) => {
+  return fetch(`${url}/maps/${mapId}/finish`, {
+    headers: Authorization,
+    method: 'POST'
+  })
+    .then((response) => response.json())
+    .catch((error) => console.error(error))
+}
+
 export {
   fetchAllMaps,
   fetchSingleMap,
   checkCoordinates,
-  startMapTimer
+  startMapTimer,
+  finishMapTimer
 }

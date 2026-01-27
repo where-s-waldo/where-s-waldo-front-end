@@ -1,12 +1,13 @@
 import Header from "../components/Header"
 import { Link, useParams } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
-import { fetchSingleMap, checkCoordinates, startMapTimer } from "../../fetch"
+import { fetchSingleMap, checkCoordinates, startMapTimer, finishMapTimer } from "../../fetch"
 import { imageMap, charMap, optionsMap } from "../components/ImgPreload"
 import Spinner from "../components/Spinner"
 import Message from "../components/message"
 import ChooseColor from "../components/ChoseColor"
 
+// time in sec
 const formatTime = (time) => {
   const totalSeconds = Math.floor(time)
   const min = Math.floor(totalSeconds / 60)
@@ -17,7 +18,6 @@ const formatTime = (time) => {
   }
   return `${sec}`
 };
-
 
 const Map = () => {
   const { id } = useParams()
@@ -34,7 +34,19 @@ const Map = () => {
   const [timer, setTimer] = useState(0)
 
   useEffect(() => {
-    const load = async (id) => {
+    (async () => {
+      await startMapTimer(id)
+    })()
+
+    const interval = setInterval(() => {
+      setTimer(prev => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [])
+
+  useEffect(() => {
+    const load = async () => {
       setMapLoading(true)
 
       const data = await fetchSingleMap(id)
@@ -49,22 +61,27 @@ const Map = () => {
       setMapLoading(false)
     }
 
-    load(id)
+    load()
   }, [])
 
   useEffect(() => {
-    const load = async (id) => {
-      setTimer(0);
-      await startMapTimer(id);
+    const load = async () => {
+      if (!characters) return
+      let i = 0
+
+      characters.forEach((char) => {
+        if (char.found) i++
+      })
+
+      if (i === characters.length) {
+        const data = await finishMapTimer(id)
+        console.log(data.endTime)
+        alert(formatTime(data.endTime / 1000))
+      }
     }
 
-    const interval = setInterval(() => {
-      setTimer(prev => prev + 1);
-    }, 1000);
-
-    load(id)
-    return () => clearInterval(interval);
-  }, [])
+    load()
+  }, [characters])
 
 
   const handleCharClick = async (charObj) => {
