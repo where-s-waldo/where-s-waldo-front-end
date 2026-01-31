@@ -1,6 +1,7 @@
 import '../css/globle.css'
 import '../css/header.css'
 import '../css/map.css'
+import '../css/leaderboard.css'
 import Header from '../components/Header.jsx'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -14,7 +15,10 @@ const MapList = ({ map }) => {
     <div className='mapItem'>
       <img src={imageMap[map.src]} alt={`Waldo Map ${map.id}`} />
       <div className='mapDescription'>{map.description}</div>
-      <Link className='goToMap' to={`/maps/${map.id}`}>go to {map.src}</Link>
+      <div style={{display: 'flex', gap: 10}}>
+        <Link className='goToMap' to={`/maps/${map.id}`}>Play Map</Link>
+        <Link className='goToMap' to={`/maps/${map.id}/leaderboard`}>Leaderboard</Link>
+      </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ const Message = ({ success, name, isOpen, setMessage }) => {
 
     const timeout = setTimeout(() => {
       setMessage(prev => ({ ...prev, isOpen: false }));
-    }, 5000);
+    }, 2000);
 
     return () => clearTimeout(timeout);
   }, [isOpen]);

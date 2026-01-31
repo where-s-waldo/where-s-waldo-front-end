@@ -13,6 +13,8 @@ import wizardWhitebeard from '../assets/waldo-photos/wizard-whitebeard.png'
 
 import changeColor from '../assets/change-color.png'
 import timer from '../assets/timer.svg'
+import check from '../assets/check.svg'
+import info from '../assets/info.svg'
 
 const imageMap = Object.freeze({
   map1,
@@ -33,11 +35,13 @@ const charMap = Object.freeze({
 
 const optionsMap = Object.freeze({
   changeColor,
-  timer
+  timer,
+  check,
+  info,
 })
 
 export {
   imageMap,
   charMap,
-  optionsMap
+  optionsMap,
 }

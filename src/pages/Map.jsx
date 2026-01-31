@@ -4,20 +4,35 @@ import { useState, useEffect, useRef } from "react"
 import { fetchSingleMap, checkCoordinates, startMapTimer, finishMapTimer } from "../../fetch"
 import { imageMap, charMap, optionsMap } from "../components/ImgPreload"
 import Spinner from "../components/Spinner"
-import Message from "../components/message"
+import Message from "../components/Message"
 import ChooseColor from "../components/ChoseColor"
+import GameStats from "../components/GameStats"
+import formatTime from "../components/formatTime"
 
-// time in sec
-const formatTime = (time) => {
-  const totalSeconds = Math.floor(time)
-  const min = Math.floor(totalSeconds / 60)
-  const sec = totalSeconds % 60
+function Timer({ setTimer, gameOver, timer }) {
+  useEffect(() => {
+    if (gameOver) return;
 
-  if (min > 0) {
-    return `${min}:${sec.toString().padStart(2, '0')}`
-  }
-  return `${sec}`
-};
+    const start = performance.now();
+
+    const id = setInterval(() => {
+      const elapsed = (performance.now() - start) / 1000;
+      setTimer(elapsed);
+    }, 75);
+
+    return () => clearInterval(id);
+  }, [gameOver, setTimer]);
+
+  return (
+    <div className="timer">
+      <img src={`${optionsMap['timer']}`} alt="" height={30} />
+      <div>{formatTime(timer)}</div>
+    </div>
+  )
+}
+
+
+
 
 const Map = () => {
   const { id } = useParams()
@@ -32,22 +47,12 @@ const Map = () => {
   const [message, setMessage] = useState({ name: '', isOpen: null, success: null })
   const [characters, setCharacters] = useState(null)
   const [timer, setTimer] = useState(0)
-
-  useEffect(() => {
-    (async () => {
-      await startMapTimer(id)
-    })()
-
-    const interval = setInterval(() => {
-      setTimer(prev => prev + 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [])
+  const [gameOver, setGameOver] = useState(false)
 
   useEffect(() => {
     const load = async () => {
       setMapLoading(true)
+      await startMapTimer(id)
 
       const data = await fetchSingleMap(id)
       setMap(() => data.map)
@@ -64,23 +69,25 @@ const Map = () => {
     load()
   }, [])
 
+
   useEffect(() => {
-    const load = async () => {
+    const endGame = async () => {
       if (!characters) return
       let i = 0
 
       characters.forEach((char) => {
         if (char.found) i++
+        if (!char.found) return
       })
 
       if (i === characters.length) {
         const data = await finishMapTimer(id)
-        console.log(data.endTime)
-        alert(formatTime(data.endTime / 1000))
+        setGameOver(true)
+        setTimer(data.endTime / 1000)
       }
     }
 
-    load()
+    endGame()
   }, [characters])
 
 
@@ -134,10 +141,12 @@ const Map = () => {
     setIsVisible(true)
   }
 
-
   return (
     <>
-      <Header link={<Link to="/">Home</Link>} />
+      {gameOver && timer && id &&
+        <GameStats time={timer} mapId={id} />
+      }
+      <Header link={<Link className="goToMap" to="/">Home</Link>} />
       <Message setMessage={setMessage} name={message.name} success={message.success} isOpen={message.isOpen} />
       {mapLoading && <Spinner />}
       {map && !mapLoading &&
@@ -147,13 +156,8 @@ const Map = () => {
               <div className="findChar">
                 <h2>Find These Characters!</h2>
                 <div className="options">
-                  <div>
-                    <ChooseColor color={color} setColor={setColor} />
-                  </div>
-                  <div className="timer">
-                    <img src={optionsMap['timer']} alt="timer" height={30} />
-                    {timer && <div>{formatTime(timer)}</div>}
-                  </div>
+                  <ChooseColor color={color} setColor={setColor} />
+                  <Timer timer={timer} setTimer={setTimer} gameOver={gameOver} />
                 </div>
               </div>
               <div className="characterBox">

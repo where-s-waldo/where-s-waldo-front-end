@@ -1,0 +1,48 @@
+.chars {
+  width: 80vw;
+  margin: 30px;
+}
+
+.title {
+  background-color: rgb(17, 63, 103);
+  border-radius: 30px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px max(5%, 20px);
+  font-size: larger;
+}
+
+.char {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 5px 5%;
+  border-bottom: 2px solid gray;
+}
+
+.char>div,
+.title>div {
+  display: flex;
+  align-items: center;
+}
+
+.charPlace {
+  flex: 1;
+  justify-content: center;
+}
+
+.charTime {
+  flex: 1;
+  justify-content: end;
+}
+
+.charUsername {
+  justify-content: start;
+  flex: 3 1 0;   
+}
