@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
-import { data, Link, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Header from "../components/Header";
 import { getLeaderboard } from "../../fetch";
 
@@ -54,9 +54,12 @@ const Leaderboard = () => {
               <div className="charPlace">Place</div>
               <div className="charTime">Time</div>
             </div>
-            {leaderboard.map((char, index) => (
-              <Char key={char.id || index} name={char.name} time={char.time} place={index + 1} />
-            ))}
+            {leaderboard && leaderboard.length == 0 && <p>No finishes have been made on this map!</p>}
+            <div className="leaderboardChars">
+              {leaderboard.map((char, index) => (
+                <Char key={char.id || index} name={char.name} time={char.time} place={index + 1} />
+              ))}
+            </div>
           </div>
           {leaderboard.length < charCount &&
             <button onClick={() => setLoadMoreChars(!loadMoreChars)} className="goToMap">Load More</button>
