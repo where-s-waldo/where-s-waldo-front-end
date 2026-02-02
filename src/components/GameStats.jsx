@@ -39,8 +39,7 @@ const GameStats = ({ time, mapId }) => {
             <Link onClick={() => onButtonPress()} className="goToMap" to={`/maps/${mapId}/leaderboard`}>View Leaderboard</Link>
             <Link onClick={() => onButtonPress()} className="goToMap" to='/'>Go Home</Link>
             <button className="goToMap" onClick={() => {
-              onButtonPress()
-              navigate(0)
+              onButtonPress().then(() => navigate(0))
             }}>Play Again</button>
           </div>
         }
