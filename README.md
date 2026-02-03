@@ -12,12 +12,15 @@ This React.js app validates X Y coordinates through the backend and displays the
 ## Example API Fetch
 
 ```js
-fetch('https://<backendURL>/maps')
-  .then(res => res.json())
-  .then(data => {
-    // data.maps is an array of map objects
-    console.log(data.map);
-  });
+const fetchAllMaps = async () => {
+  return fetch(`${url}/maps`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then((response) => response.json())
+    .catch((error) => console.error(error))
+} // response.maps is an array of map objects
 ```
 
 ## Targeting Box
