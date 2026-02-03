@@ -1,16 +1,24 @@
-# React + Vite
+# Where’s Waldo — Photo Tagging App (React Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This React.js app fetches images from the backend and displays them so users can tag Waldo.
 
-Currently, two official plugins are available:
+## How It Works
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. The frontend uses the Fetch API to get image data (URLs) from the backend.
+2. Images are displayed in a gallery.
+3. Users can mark/tap where Waldo is.
 
-## React Compiler
+## Example API Fetch
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```js
+fetch('https://<backendURL>/maps')
+  .then(res => res.json())
+  .then(data => {
+    // data.maps is an array of map objects
+    console.log(data.map);
+  });
+```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Waldo Forest](/images/forest.png)
+![Waldo Beach](/images/beach.png)
+![Waldo City](/images/city.png)
