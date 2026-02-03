@@ -1,5 +1,5 @@
 # Where’s Waldo — Photo Tagging App (React Frontend)
-[backend](https://github.com/where-s-waldo/where-s-waldo-back-end)
+[Backend](https://github.com/where-s-waldo/where-s-waldo-back-end)
 
 This React.js app validates X Y coordinates through the backend and displays the result so users can tag Waldo.
 
