@@ -4,9 +4,9 @@ This React.js app fetches images from the backend and displays them so users can
 
 ## How It Works
 
-1. The frontend uses the Fetch API to get image data (URLs) from the backend.
-2. Images are displayed in a gallery.
-3. Users can mark/tap where Waldo is.
+1. The frontend uses the Fetch API to get X Y coordinates data from the backend.
+2. Users can mark/tap where Waldo is.
+3. the X Y are used to check it the chars in in the place the user clicks on.
 
 ## Example API Fetch
 
@@ -19,4 +19,5 @@ fetch('https://<backendURL>/maps')
   });
 ```
 
+## Targeting Box
 ![Waldo targeting box](/public/readmeImgs/targetBox.png)
