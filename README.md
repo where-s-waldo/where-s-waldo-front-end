@@ -19,6 +19,5 @@ fetch('https://<backendURL>/maps')
   });
 ```
 
-![Waldo Forest](/images/forest.png)
-![Waldo Beach](/images/beach.png)
-![Waldo City](/images/city.png)
+![Waldo targeting box](/readmeImgs/targetBox.png)
+![Waldo video](/readmeImgs/readmeVid.mp4)
