@@ -1,23 +1,27 @@
 # Where’s Waldo — Photo Tagging App (React Frontend)
+[Backend](https://github.com/where-s-waldo/where-s-waldo-back-end)
 
-This React.js app fetches images from the backend and displays them so users can tag Waldo.
+This React.js app validates X Y coordinates through the backend and displays the result so users can tag Waldo.
 
 ## How It Works
 
-1. The frontend uses the Fetch API to get image data (URLs) from the backend.
-2. Images are displayed in a gallery.
-3. Users can mark/tap where Waldo is.
+1. The frontend uses the Fetch API to get X Y coordinates data from the backend.
+2. Users can mark/tap where Waldo is.
+3. the X Y are used to check it the chars in in the place the user clicks on.
 
 ## Example API Fetch
 
 ```js
-fetch('https://<backendURL>/maps')
-  .then(res => res.json())
-  .then(data => {
-    // data.maps is an array of map objects
-    console.log(data.map);
-  });
+const fetchAllMaps = async () => {
+  return fetch(`${url}/maps`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then((response) => response.json())
+    .catch((error) => console.error(error))
+} // response.maps is an array of map objects
 ```
 
-![Waldo targeting box](/readmeImgs/targetBox.png)
-![Waldo video](/readmeImgs/readmeVid.mp4)
+## Targeting Box
+![Waldo targeting box](/public/readmeImgs/targetBox.png)
