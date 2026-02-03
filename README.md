@@ -19,5 +19,5 @@ fetch('https://<backendURL>/maps')
   });
 ```
 
-![Waldo targeting box](/images/readmeIms/targetBox.png)
-![Waldo video](/images/readmeIms/readmeVid.mp4)
+![Waldo targeting box](/readmeImgs/targetBox.png)
+![Waldo video](/readmeImgs/readmeVid.mp4)
