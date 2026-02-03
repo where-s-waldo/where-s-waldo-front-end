@@ -20,4 +20,3 @@ fetch('https://<backendURL>/maps')
 ```
 
 ![Waldo targeting box](/public/readmeImgs/targetBox.png)
-<video src="/public/readmeImgs/readmeVid.mp4" controls="controls" muted="muted" width="100%"></video>
