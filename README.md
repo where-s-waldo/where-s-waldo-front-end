@@ -5,11 +5,23 @@ This React.js app validates X Y coordinates through the backend and displays the
 
 ## How It Works
 
-1. The frontend uses the Fetch API to get X Y coordinates data from the backend.
-2. Users can mark/tap where Waldo is.
-3. the X Y are used to check it the chars in in the place the user clicks on.
+1. The user clicks the sceen and gets the X Y coordinates and the selected character.
+2. The frontend uses the Fetch API to get send the users X Y and selected character and validate them against the backend X Y coordinates data.
+3. The backend sends true/false and the frontend displays the result.
 
 ## Example API Fetch
+
+```js
+const checkCoordinates = async (mapId, char, x, y) => {
+  return fetch(`${url}/maps/${mapId}/onClick?char=${char}&x=${x}&y=${y}`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then((response) => response.json())
+    .catch((error) => console.error(error))
+} // sends back true/false and the char it is checking
+```
 
 ```js
 const fetchAllMaps = async () => {
